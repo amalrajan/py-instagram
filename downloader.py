@@ -13,7 +13,7 @@ class MainWindow(Tk):
         Tk.__init__(self)
 
         self.resizable(False, False)
-        self.geometry("700x380")
+        self.geometry("700x380+{0}+{1}".format(self.winfo_screenwidth()//2 - 350, self.winfo_screenheight()//2 - 190))
 
         self.var0 = StringVar()
         self.var1 = StringVar()
@@ -32,6 +32,7 @@ class MainWindow(Tk):
         # self.o_file_extension = ttk.OptionMenu(self, self.var1, "Select Extension", "                 .jpg",
         # "                 .png")
         self.b_download = ttk.Button(self, text="Download Image(s)", command=self.check_entries)
+        self.b_advanced_options = ttk.Button(self, text="Advanced Options", command=self.advanced_options)
 
         self.l_title.place(x=350, y=50, anchor=CENTER)
         self.l_url.place(x=60, y=120)
@@ -43,11 +44,15 @@ class MainWindow(Tk):
         self.b_browse_directory.place(x=560, y=170, height=30, width=120)
         # self.l_filename.place(x=25, y=220)
         # self.e_filename.place(x=100, y=220, height=30, width=450)
-        self.b_download.place(x=100, y=270, height=35, width=120)
+        self.b_download.place(x=560, y=270, height=35, width=120)
+        self.b_advanced_options.place(x=560, y=220, width=120, height=30)
 
     def browse_directory(self):
         self.directory = filedialog.askdirectory()
         self.var2.set(self.directory)
+
+    def advanced_options(self):
+        pass
 
     def check_entries(self):
         self.entries = ["self.e_url", "self.e_output_directory"]
@@ -56,7 +61,9 @@ class MainWindow(Tk):
                 messagebox.showinfo("Insufficient data", message="Please check if you've filled all the details.")
                 break
         else:
-            self.start_download()
+            self. result = messagebox.askyesno("Start downloading?", message="Are you sure you want to start the download?")
+            if self.result:
+                self.start_download()
 
 
     def batch_download(self):
@@ -76,7 +83,8 @@ class MainWindow(Tk):
             self.image = self.soup.find("meta", property="og:image")["content"]
             self.image_title = "image{}.jpg".format(self.incrementor)
             self.incrementor += 1
-            with open(self.image_title, 'wb') as self.new_image:
+            self.image_path = os.path.join(self.e_output_directory.get(), self.image_title)
+            with open(self.image_path, 'wb') as self.new_image:
                 self.new_image.write(urllib.request.urlopen(self.image).read())
 
 
