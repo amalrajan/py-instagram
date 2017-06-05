@@ -10,3 +10,5 @@ cd Pystagram
 python3 main.py
 ```
 
+## License
+`LGPL v3.0`
