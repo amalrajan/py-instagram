@@ -3,6 +3,7 @@ import bs4 as bs
 import urllib.request
 import sys
 import os
+import datetime
 
 
 def argument_parser():
@@ -13,14 +14,15 @@ def argument_parser():
     parser.add_argument('-o', '--output', type=str, default=os.getcwd(), help="output destination")
 
     args = parser.parse_args()
-    sys.stdout.write(str(main(args)))
+    main(args)
 
 
 def download_image(url, dest):
     source = urllib.request.urlopen(url).read()
     soup = bs.BeautifulSoup(source, 'lxml')
     image = soup.find("meta", property="og:image")["content"]
-    path = dest + "\image.jpg"
+    title = str(datetime.datetime.now()).replace(':', '-')
+    path = "{}\{}.jpg".format(dest, title)
 
     with open(path, 'wb') as file:
         file.write(urllib.request.urlopen(image).read())
