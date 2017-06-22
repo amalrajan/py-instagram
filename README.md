@@ -26,5 +26,19 @@ cd Pystagram
 python3 main.py
 ```
 
+## Usage
+
+```
+usage: main.py [-h] [-o OUTPUT] type url
+
+positional arguments:
+  type                        single / multiple
+  url                         url / path to text file
+
+optional arguments:
+  -h, --help                  show this help message and exit
+  -o OUTPUT, --output OUTPUT  output destination
+```
+
 ## License
 `GNU General Public License v3.0`
