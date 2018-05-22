@@ -11,10 +11,19 @@ def argument_parser():
 
     parser.add_argument('type', type=str, help="single / multiple")
     parser.add_argument('url', type=str, help="url / path to text file")
-    parser.add_argument('-o', '--output', type=str, default=os.getcwd(), help="output destination")
+    parser.add_argument('-o', '--output', type=str,
+                        default=os.getcwd(), help="output destination")
 
     args = parser.parse_args()
     main(args)
+
+
+def download_image(url, dest):
+    source = urllib.request.urlopen(url).read()
+    soup = bs.BeautifulSoup(source, 'lxml')
+    image = soup.find('meta', property='og:iamge')['content']
+    title = str(datetime.datetime.now().replace(':', '-'))
+    path = "{}\{}.jpg".format(dest, title)
 
 
 def download_image(url, dest):
