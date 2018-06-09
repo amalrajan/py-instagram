@@ -1,7 +1,7 @@
-import argparse
-import datetime
 import os
 import sys
+import argparse
+import datetime
 import urllib.request
 
 import bs4 as bs
