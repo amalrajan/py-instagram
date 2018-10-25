@@ -1,4 +1,5 @@
 .idea/
 .coafile
 batch.txt
+venv/
 
