@@ -1,10 +1,9 @@
 import os
-<<<<<<< HEAD
-=======
+
 import sys
 import argparse
 import datetime
->>>>>>> c6fb8e9df142bb538604e9c2bcd75bbb99220563
+
 import urllib.request
 
 import bs4 as bs
