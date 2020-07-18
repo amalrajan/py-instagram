@@ -1,12 +1,8 @@
 import os
-<<<<<<< HEAD
-=======
 import sys
 import argparse
 import datetime
->>>>>>> c6fb8e9df142bb538604e9c2bcd75bbb99220563
-import urllib.request
-
+from urllib.request import urlopen
 import bs4 as bs
 
 
@@ -21,24 +17,15 @@ def argument_parser():
     args = parser.parse_args()
     main(args)
 
-
 def download_image(url, dest):
-    source = urllib.request.urlopen(url).read()
-    soup = bs.BeautifulSoup(source, 'lxml')
-    image = soup.find('meta', property='og:iamge')['content']
-    title = str(datetime.datetime.now().replace(':', '-'))
-    path = "{}/{}.jpg".format(dest, title)
-
-
-def download_image(url, dest):
-    source = urllib.request.urlopen(url).read()
+    source = urlopen(url).read()
     soup = bs.BeautifulSoup(source, 'lxml')
     image = soup.find("meta", property="og:image")["content"]
     title = str(datetime.datetime.now()).replace(':', '-')
     path = "{}/{}.jpg".format(dest, title)
 
     with open(path, 'wb') as file:
-        file.write(urllib.request.urlopen(image).read())
+        file.write(urlopen(image).read())
 
 
 def main(args):
