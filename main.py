@@ -2,8 +2,7 @@ import os
 import sys
 import argparse
 import datetime
-import requests
-
+from urllib.request import urlopen
 import bs4 as bs
 
 
@@ -19,7 +18,6 @@ def argument_parser():
     main(args)
 
 def download_image(url, dest):
-    from urllib2 import urlopen
     source = urlopen(url).read()
     soup = bs.BeautifulSoup(source, 'lxml')
     image = soup.find("meta", property="og:image")["content"]
