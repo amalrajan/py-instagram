@@ -1,5 +1,5 @@
-# Pystagram
-_A python tool to download pictures from Instagram_
+# py-instagram
+A python tool to download pictures from Instagram
 
 ## Description
 
@@ -8,22 +8,12 @@ Use this tool to download any picture from Instagram, in the maximum possible re
 
 ## Installation
 
-You need to have Python 3x installed for this to work.
+Note: Python 2 is not supported
 
-### Windows
 ```
-cd folder_name 
-git clone https://github.com/lollichop/Pystagram.git
-cd Pystagram
-py -3.6 main.py
-```
-
-### Linux
-```
-cd folder_name
-git clone https://github.com/lollichop/Pystagram.git
-cd Pystagram
-python3 main.py
+git clone https://github.com/amalrajan/py-instagram.git
+cd py-instagram
+python main.py [args]
 ```
 
 ## Usage
